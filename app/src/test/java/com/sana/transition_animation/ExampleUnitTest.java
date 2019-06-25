@@ -1,4 +1,4 @@
-package com.sana.transition_animation_sample;
+package com.sana.transition_animation;
 
 import org.junit.Test;
 

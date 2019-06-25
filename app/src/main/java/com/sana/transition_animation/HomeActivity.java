@@ -1,7 +1,8 @@
-package com.sana.transition_animation_sample;
+package com.sana.transition_animation;
 
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
