@@ -6,4 +6,7 @@
     <string name="next">Next</string>
     <string name="email">Email</string>
     <string name="fullname">Full Name</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
 </resources>
