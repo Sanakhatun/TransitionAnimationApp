@@ -80,10 +80,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Animation setAnimation(@AnimRes int id, Interpolator interpolator, Boolean fillAfter){
         Animation animation = AnimationUtils.loadAnimation(this, id);
 
-        if(interpolator!=null)
+        if(interpolator!=null) {
             animation.setInterpolator(interpolator);
-        else
+        }
+        else {
             animation.setInterpolator((new LinearInterpolator()));
+        }
 
         animation.setFillAfter(fillAfter);
         return animation;
