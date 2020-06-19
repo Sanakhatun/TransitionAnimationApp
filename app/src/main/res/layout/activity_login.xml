@@ -30,7 +30,7 @@
             android:layout_below="@id/ivLogo"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="Firebase"
+            android:text="@string/firebase"
             android:textSize="36dp" />
 
         <LinearLayout
@@ -44,11 +44,12 @@
             <!-- Username -->
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tl_username"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/username"
-                app:boxStrokeColor="@color/color_yellow"
+                                                                                                                                                                                           app:boxStrokeColor="@color/color_yellow"
                 app:errorEnabled="true"
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
@@ -61,7 +62,9 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Password -->
+
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tl_password"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
