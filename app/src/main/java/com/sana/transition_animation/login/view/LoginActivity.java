@@ -2,9 +2,6 @@ package com.sana.transition_animation.login.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.AnimRes;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
@@ -14,6 +11,10 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.AnimRes;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.textfield.TextInputEditText;
 import com.sana.transition_animation.home.view.HomeActivity;
 import com.sana.transition_animation.R;
 
@@ -68,6 +69,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    /**
+     * Transition between Screens i.e from LoginActivity to HomeActivity
+     */
 
     private void openIntent() {
         Intent homeIntent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -76,6 +80,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
            we override the transition */
         overridePendingTransition(R.anim.left_in, R.anim.left_out);
     }
+
+    /**
+     *
+     * @param id   Animation resource Id
+     * @param interpolator  Animation Effect
+     * @param fillAfter
+     * @return
+     */
 
     private Animation setAnimation(@AnimRes int id, Interpolator interpolator, Boolean fillAfter){
         Animation animation = AnimationUtils.loadAnimation(this, id);

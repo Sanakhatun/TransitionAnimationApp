@@ -5,95 +5,107 @@
     android:id="@+id/rlRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.view.LoginActivity"
     android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp">
+    android:layout_marginRight="16dp"
+    tools:context=".login.view.LoginActivity">
 
-    android:descendantFocusability="beforeDescendants"
-    android:focusableInTouchMode="true"
-
-    <ImageView
-        android:id="@+id/ivLogo"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo"
-        android:layout_marginTop="20dp"/>
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Firebase"
-        android:textSize="36dp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@id/ivLogo"/>
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:contentDescription="Logo"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivLogo"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="Firebase"
+            android:textSize="36dp" />
 
         <LinearLayout
             android:id="@+id/llLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_below="@id/tvTitle"
             android:layout_marginTop="30dp"
-            android:layout_below="@id/tvTitle">
+            android:orientation="vertical">
 
-            <android.support.design.widget.TextInputLayout
+            <!-- Username -->
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/username"
-                app:errorEnabled="true"
                 app:boxStrokeColor="@color/color_yellow"
-                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:errorEnabled="true"
+                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etUserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-
-            <android.support.design.widget.TextInputLayout
+            <!-- Password -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:passwordToggleEnabled="true"
-                app:boxStrokeColor="@color/color_yellow"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:hint="@string/password"
-                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+                app:boxStrokeColor="@color/color_yellow"
+                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                app:passwordToggleEnabled="true">
 
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:inputType="numberPassword"/>
+                    android:inputType="numberPassword"
+                    android:singleLine="true" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.v7.widget.AppCompatTextView
+            <!-- Forgot Password -->
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/forgot_password"
                 android:layout_marginTop="10dp"
-                android:textStyle="bold"/>
+                android:text="@string/forgot_password"
+                android:textStyle="bold" />
 
-            <android.support.design.button.MaterialButton
+            <!-- Login -->
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/bLogin"
+                style="@style/TextAppearance.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/login"
-                android:gravity="center"
                 android:layout_gravity="right"
                 android:layout_marginTop="30dp"
+                android:backgroundTint="@color/color_yellow"
+                android:gravity="center"
                 android:padding="15dp"
-                style="@style/TextAppearance.MaterialComponents.Button"
-                android:backgroundTint="@color/color_yellow"/>
+                android:text="@string/login" />
 
         </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
 
