@@ -1,10 +1,10 @@
 package com.sana.transition_animation.login.view;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -14,7 +14,6 @@ import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.annotation.AnimRes;
 import androidx.annotation.RequiresApi;
@@ -64,11 +63,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    /**
+     * Register Listeners
+     */
 
     private void setListeners() {
-        bLogin.setOnClickListener(this);
-    }
 
+        try {
+
+            etUserName.addTextChangedListener(textWatcherListener(tl_username, getString(R.string.please_enter_username)));
+            etPassword.addTextChangedListener(textWatcherListener(tl_password, getString(R.string.please_enter_password)));
+            bLogin.setOnClickListener(this);
+
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -76,6 +87,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
 
             case R.id.bLogin:
+
                 /* Activity Transition Animation */
 
                 username = etUserName.getText().toString();
@@ -94,11 +106,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      */
 
     private void openIntent() {
-        Intent homeIntent = new Intent(LoginActivity.this, HomeActivity.class);
-        startActivity(homeIntent);
-        /* Following the documentation, right after starting the activity and we can also use it after finishing the activity i.e.after finish()
-           we override the transition */
-        overridePendingTransition(R.anim.left_in, R.anim.left_out);
+
+        try {
+
+            Intent homeIntent = new Intent(LoginActivity.this, HomeActivity.class);
+            homeIntent.putExtra("username", username);
+            startActivity(homeIntent);
+            /* Following the documentation, right after starting the activity and we can also use it after finishing the activity i.e.after finish()
+               we override the transition */
+            overridePendingTransition(R.anim.left_in, R.anim.left_out);
+
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
     }
 
     /**
@@ -128,11 +148,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         try {
 
             if (username.equalsIgnoreCase("")) {
+
                 tl_username.setError(getString(R.string.please_enter_username));
                 return false;
+
             } else if (password.equalsIgnoreCase("")) {
+
                 tl_password.setError(getString(R.string.please_enter_password));
                 return false;
+
             }
 
         } catch (Exception e) {
@@ -141,5 +165,46 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         return true;
+    }
+
+    /**
+     * TextWatcher Listener for multiple EditText
+     *
+     * @param view         EditText
+     * @param errorMessage validation error message
+     * @return
+     */
+
+    private TextWatcher textWatcherListener(final View view, final String errorMessage) {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+
+                    if (view instanceof TextInputLayout) {
+
+                        if (s.length() == 0) {
+                            ((TextInputLayout) view).setError(errorMessage);
+                        } else {
+                            ((TextInputLayout) view).setError(null);
+                        }
+
+                    }
+
+                } catch (Exception e) {
+                    Log.e(TAG, e.getMessage());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
     }
 }
